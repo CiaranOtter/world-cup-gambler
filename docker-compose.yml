@@ -1,0 +1,17 @@
+services:
+  worldcup:
+    build: .
+    container_name: worldcup_gambler
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      # Persists user profiles across restarts and rebuilds
+      - worldcup_data:/app/data
+    environment:
+      # Optional: set this to your worldcup26.ir JWT token for
+      # authenticated access. Leave unset to use the free demo endpoints.
+      - WORLDCUP_API_TOKEN=${WORLDCUP_API_TOKEN:-}
+
+volumes:
+  worldcup_data:

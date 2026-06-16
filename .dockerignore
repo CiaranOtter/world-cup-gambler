@@ -1,0 +1,18 @@
+# Build artifacts
+worldcup_gambler
+*.png
+*.log
+
+# Data (mounted as a volume at runtime)
+data/
+
+# Dev / test helpers
+mocktest*/
+preview/
+screenshot*/
+ss_*.png
+shot_*.png
+
+# Git
+.git
+.gitignore
