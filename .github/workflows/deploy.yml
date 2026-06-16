@@ -6,7 +6,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE: ghcr.io/${{ github.repository_owner }}/worldcup_gambler
+  IMAGE: ghcr.io/ciaranotter/worldcup_gambler
 
 jobs:
   build-and-deploy:
