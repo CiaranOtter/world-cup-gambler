@@ -9,9 +9,8 @@ RUN go mod download
 
 # Copy source and build a fully static binary
 COPY *.go ./
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 \
+RUN CGO_ENABLED=0 GOOS=linux \
     go build -ldflags="-s -w" -o worldcup_gambler .
-
 # ── Stage 2: runtime ────────────────────────────────────────
 # scratch = zero OS overhead; only the binary + static files
 FROM scratch
