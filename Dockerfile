@@ -1,11 +1,11 @@
 # ── Stage 1: build ──────────────────────────────────────────
-FROM golang:1.22-alpine AS builder
+FROM golang:1.24-alpine AS builder
 
 WORKDIR /build
 
 # Copy module files first so dependency downloads are cached
 COPY go.mod ./
-# RUN go mod download
+RUN go mod download
 
 # Copy source and build a fully static binary
 COPY *.go ./
