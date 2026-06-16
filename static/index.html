@@ -3,19 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>World Cup Gambler ⚽</title>
+  <title>World Cup Gambler</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Permanent+Marker&family=Inter:wght@400;500;600&display=swap">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
 
   <header class="site-header">
     <div class="header-inner wrap">
-      <div class="header-badge">
-        <h1 class="site-title">⚽ World Cup Gambler</h1>
-        <p class="site-subtitle">FIFA World Cup 2026 — Pick your team, chase the glory</p>
-      </div>
+      <h1 class="site-title">
+        <span class="dot"></span>
+        World Cup Gambler
+      </h1>
+      <p class="site-subtitle">FIFA World Cup 2026</p>
     </div>
   </header>
 
@@ -33,45 +35,51 @@
   <main>
     <div class="wrap">
 
-      <!-- MATCHES VIEW -->
+      <!-- MATCHES -->
       <div id="view-matches" class="view active">
         <div class="filter-bar" id="matchday-filters"></div>
         <div id="matches-list"><p class="loading">Loading fixtures…</p></div>
       </div>
 
-      <!-- STANDINGS VIEW -->
+      <!-- STANDINGS -->
       <div id="view-standings" class="view">
         <div id="standings-list"><p class="loading">Loading standings…</p></div>
       </div>
 
-      <!-- LEADERBOARD VIEW -->
+      <!-- LEADERBOARD -->
       <div id="view-leaderboard" class="view">
-        <p class="score-formula">
-          <strong>Score =</strong> Points × 3 &nbsp;+&nbsp; Goals scored × 1 &nbsp;+&nbsp; Goal difference × 1 &nbsp;+&nbsp; Knockout wins × 5
-        </p>
+        <div class="score-formula">
+          <span class="formula-tag">Pts × 3</span>
+          <span class="formula-op">+</span>
+          <span class="formula-tag">Goals × 1</span>
+          <span class="formula-op">+</span>
+          <span class="formula-tag">GD × 1</span>
+          <span class="formula-op">+</span>
+          <span class="formula-tag">KO wins × 5</span>
+        </div>
         <div id="leaderboard-list"><p class="loading">Loading leaderboard…</p></div>
       </div>
 
-      <!-- GAME VIEW -->
+      <!-- MY TEAM -->
       <div id="view-game" class="view">
         <div class="game-section">
-          <!-- State: no profile saved locally -->
+
           <div id="game-register">
-            <h2 class="section-header">Join the game</h2>
-            <div class="retro-card">
-              <p class="retro-card-title">Create your profile</p>
+            <p class="section-title">Join the game</p>
+            <div class="card">
+              <p class="card-title">Create your profile</p>
               <div class="field">
                 <label for="reg-name">Your name</label>
                 <input id="reg-name" type="text" maxlength="32" placeholder="Enter your name…" autocomplete="off">
               </div>
-              <button class="btn btn-primary btn-full" id="reg-submit">Draw my team ⚽</button>
+              <button class="btn btn-primary btn-full" id="reg-submit">Draw my team</button>
             </div>
-            <p style="font-size:0.8rem;color:var(--ink-muted);text-align:center">
-              Already registered? <a href="#" id="lookup-link" style="color:var(--grass-dark)">Enter your player ID</a>
+            <p class="lookup-toggle">
+              Already registered? <a href="#" id="lookup-link">Enter your player ID</a>
             </p>
-            <div id="lookup-form" style="display:none">
-              <div class="retro-card" style="margin-top:0.75rem">
-                <p class="retro-card-title">Look up your profile</p>
+            <div id="lookup-form" style="display:none; margin-top:0.6rem">
+              <div class="card">
+                <p class="card-title">Load your profile</p>
                 <div class="field">
                   <label for="lookup-id">Player ID</label>
                   <input id="lookup-id" type="text" placeholder="Paste your player ID…" autocomplete="off">
@@ -81,35 +89,35 @@
             </div>
           </div>
 
-          <!-- State: profile loaded -->
           <div id="game-profile" style="display:none">
-            <h2 class="section-header">Your profile</h2>
-            <div class="team-reveal" id="profile-team-reveal">
+            <p class="section-title">Your profile</p>
+            <div class="team-reveal">
               <div class="team-reveal-crest" id="profile-crest">?</div>
               <p class="team-reveal-name" id="profile-team-name">—</p>
               <p class="team-reveal-fa" id="profile-team-fa"></p>
             </div>
-            <div class="profile-card">
+            <div class="card">
               <p class="profile-name" id="profile-display-name">—</p>
               <div class="profile-stats" id="profile-stats"></div>
-              <p style="font-size:0.72rem;color:var(--ink-muted);margin:0">
-                Player ID: <code id="profile-id-display" style="font-size:0.7rem;word-break:break-all"></code>
+              <p class="profile-id">
+                Player ID: <code id="profile-id-display"></code>
               </p>
+              <div class="btn-row">
+                <button class="btn btn-danger" id="reroll-btn">Re-roll team</button>
+                <button class="btn btn-secondary" id="signout-btn">Sign out</button>
+              </div>
+              <p class="reroll-note" id="reroll-note"></p>
             </div>
-            <div style="display:flex;gap:0.6rem;margin-top:0.75rem;flex-wrap:wrap">
-              <button class="btn btn-danger" id="reroll-btn">🎲 Re-roll my team</button>
-              <button class="btn btn-secondary" id="signout-btn">Sign out</button>
-            </div>
-            <p class="reroll-note" id="reroll-note"></p>
           </div>
 
         </div>
       </div>
+
     </div>
   </main>
 
   <footer class="site-footer">
-    Data via worldcup26.ir · Refreshes every 30s · Times in local kickoff time
+    Data via worldcup26.ir · Refreshes every 30s
   </footer>
 
   <script src="/static/js/app.js"></script>

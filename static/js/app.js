@@ -224,7 +224,10 @@ function renderGroupCard(g) {
 
   return `
     <div class="group-card">
-      <div class="group-card-header">⚽ Group ${esc(g.group)}</div>
+      <div class="group-card-header">
+        <div class="group-letter">${esc(g.group)}</div>
+        <span>Group ${esc(g.group)}</span>
+      </div>
       <table class="group-table">
         <thead><tr>
           <th>#</th><th>Team</th>

@@ -5,7 +5,7 @@ WORKDIR /build
 
 # Copy module files first so dependency downloads are cached
 COPY go.mod ./
-RUN go mod download
+# RUN go mod download
 
 # Copy source and build a fully static binary
 COPY *.go ./
